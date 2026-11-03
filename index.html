@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ashok Sharma — Machine Learning Engineer, software developer, educator, and lifelong learner.">
+  <meta name="theme-color" content="#101827">
+  <title>Ashok Sharma | Engineer · Researcher · Educator</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --surface: #111c2e;
+      --surface-2: #16243a;
+      --text: #edf3fb;
+      --muted: #a8b6c9;
+      --accent: #72e0c0;
+      --accent-2: #8ab4ff;
+      --line: rgba(190, 210, 235, .14);
+      --max: 1120px;
+      --radius: 18px;
+      --shadow: 0 18px 55px rgba(0,0,0,.22);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+    body {
+      margin: 0; background: var(--bg); color: var(--text);
+      font: 16px/1.7 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    a { color: inherit; text-decoration: none; }
+    a:hover { color: var(--accent); }
+    .container { width: min(var(--max), calc(100% - 44px)); margin: 0 auto; }
+    .site-header {
+      position: sticky; top: 0; z-index: 20; backdrop-filter: blur(16px);
+      background: rgba(11,18,32,.82); border-bottom: 1px solid var(--line);
+    }
+    .nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { font-weight: 800; letter-spacing: -.04em; font-size: 1.18rem; }
+    .brand span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 25px; color: var(--muted); font-size: .92rem; }
+    .nav-links a { transition: color .2s ease; }
+    .menu-toggle { display: none; border: 1px solid var(--line); color: var(--text); background: var(--surface); border-radius: 10px; padding: 8px 12px; cursor: pointer; }
+    .hero { padding: 92px 0 82px; position: relative; overflow: hidden; }
+    .hero::before {
+      content: ""; position: absolute; width: 480px; height: 480px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(114,224,192,.13), transparent 68%);
+      top: -190px; right: -100px; pointer-events: none;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.35fr .65fr; align-items: center; gap: 70px; position: relative; }
+    .eyebrow { color: var(--accent); text-transform: uppercase; letter-spacing: .16em; font-size: .76rem; font-weight: 800; }
+    h1 { font-size: clamp(2.8rem, 6vw, 5.2rem); line-height: 1.04; letter-spacing: -.065em; margin: 18px 0 20px; }
+    h1 span { color: var(--accent); }
+    .hero-lead { max-width: 690px; color: var(--muted); font-size: 1.12rem; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 30px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; padding: 11px 19px; border-radius: 999px; font-weight: 750; font-size: .92rem; border: 1px solid var(--line); transition: transform .2s, background .2s; }
+    .button:hover { transform: translateY(-2px); }
+    .button.primary { background: var(--accent); color: #082018; border-color: var(--accent); }
+    .button.secondary { color: var(--text); background: rgba(255,255,255,.03); }
+    .portrait-wrap { justify-self: end; position: relative; width: min(310px, 100%); }
+    .portrait-wrap::after { content: ""; position: absolute; inset: 16px -16px -16px 16px; border: 1px solid rgba(114,224,192,.55); border-radius: 28px; z-index: -1; }
+    .portrait { width: 100%; aspect-ratio: 4/5; object-fit: cover; object-position: center; border-radius: 25px; background: var(--surface-2); box-shadow: var(--shadow); display: block; }
+    .portrait-note { color: var(--muted); font-size: .8rem; text-align: center; margin-top: 25px; }
+    section { padding: 78px 0; border-top: 1px solid var(--line); }
+    .section-heading { margin-bottom: 34px; }
+    .section-heading h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); line-height: 1.15; letter-spacing: -.045em; margin: 9px 0 10px; }
+    .section-heading p { color: var(--muted); margin: 0; max-width: 700px; }
+    .about-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 28px; }
+    .panel, .card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; }
+    .panel p { color: var(--muted); margin: 0 0 15px; }
+    .panel p:last-child { margin-bottom: 0; }
+    .values { display: grid; gap: 12px; }
+    .value { background: var(--surface-2); border: 1px solid var(--line); padding: 16px 18px; border-radius: 13px; }
+    .value strong { display: block; color: var(--accent); margin-bottom: 3px; }
+    .value span { color: var(--muted); font-size: .92rem; }
+    .stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 22px; }
+    .stat { padding: 18px; background: rgba(255,255,255,.025); border: 1px solid var(--line); border-radius: 14px; }
+    .stat b { display: block; color: var(--accent); font-size: 1.6rem; letter-spacing: -.04em; }
+    .stat small { color: var(--muted); }
+    .timeline { display: grid; gap: 18px; }
+    .timeline-item { display: grid; grid-template-columns: 190px 1fr; gap: 25px; padding: 25px 0; border-top: 1px solid var(--line); }
+    .timeline-item:first-child { border-top: 0; padding-top: 0; }
+    .date { color: var(--accent); font-weight: 750; font-size: .9rem; }
+    .place { color: var(--muted); font-size: .9rem; margin-top: 4px; }
+    .entry h3 { margin: 0 0 3px; font-size: 1.18rem; }
+    .entry .sub { color: var(--accent-2); font-size: .92rem; margin-bottom: 12px; }
+    .entry p, .entry li { color: var(--muted); }
+    .entry p { margin: 8px 0; }
+    .entry ul { margin: 10px 0 0; padding-left: 19px; }
+    .entry li { padding: 3px 0; }
+    .tag-list { display: flex; flex-wrap: wrap; gap: 9px; }
+    .tag { padding: 7px 12px; border-radius: 999px; background: var(--surface-2); border: 1px solid var(--line); color: #cbd8e8; font-size: .86rem; }
+    .skill-groups { display: grid; grid-template-columns: repeat(2,1fr); gap: 15px; }
+    .skill-group h3 { margin: 0 0 14px; font-size: 1.05rem; }
+    .project-grid, .course-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; }
+    .project-card h3, .course-card h3 { margin: 0 0 7px; }
+    .project-card p, .course-card p { color: var(--muted); margin: 0; }
+    .project-meta { color: var(--accent); font-size: .82rem; font-weight: 700; margin-bottom: 10px; }
+    .education-note { color: var(--muted); font-size: .92rem; margin-top: 10px; }
+    .awards { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .award { background: var(--surface); border: 1px solid var(--line); border-radius: 15px; padding: 20px; }
+    .award .year { color: var(--accent); font-size: .83rem; font-weight: 800; }
+    .award p { margin: 8px 0 0; }
+    .contact-panel { display: flex; justify-content: space-between; align-items: center; gap: 28px; padding: 32px; background: linear-gradient(120deg, #14283a, #142238); border: 1px solid rgba(114,224,192,.25); border-radius: 20px; }
+    .contact-panel h2 { margin: 0 0 8px; font-size: 2rem; letter-spacing: -.04em; }
+    .contact-panel p { color: var(--muted); margin: 0; }
+    .contact-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+    footer { padding: 28px 0; color: var(--muted); font-size: .86rem; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    .social-links { display: flex; gap: 18px; }
+    @media (max-width: 800px) {
+      .hero { padding: 65px 0; }
+      .hero-grid { grid-template-columns: 1fr; gap: 42px; }
+      .portrait-wrap { justify-self: start; width: min(250px, 75%); }
+      .about-grid { grid-template-columns: 1fr; }
+      .timeline-item { grid-template-columns: 1fr; gap: 9px; }
+      .awards { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      .container { width: min(100% - 32px, var(--max)); }
+      .menu-toggle { display: block; }
+      .nav-links { display: none; position: absolute; top: 71px; left: 0; right: 0; padding: 18px 22px 22px; background: #0e1929; border-bottom: 1px solid var(--line); flex-direction: column; align-items: flex-start; gap: 13px; }
+      .nav-links.open { display: flex; }
+      .stats, .skill-groups, .project-grid, .course-grid { grid-template-columns: 1fr; }
+      section { padding: 60px 0; }
+      .contact-panel { align-items: flex-start; flex-direction: column; padding: 25px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home">Ashok<span>.</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-expanded="false" aria-controls="navLinks">Menu</button>
+      <div class="nav-links" id="navLinks">
+        <a href="#about">About</a><a href="#experience">Experience</a><a href="#education">Education</a>
+        <a href="#skills">Skills</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <div class="eyebrow">Engineer · Researcher · Educator</div>
+          <h1>Hello, I'm<br><span>Ashok Sharma.</span></h1>
+          <p class="hero-lead">I build intelligent solutions at the intersection of machine learning, language technologies, and software engineering. I enjoy turning ideas into practical systems, sharing what I learn, and growing alongside a team.</p>
+          <div class="hero-actions">
+            <a class="button primary" href="#contact">Get in touch</a>
+            <a class="button secondary" href="https://www.linkedin.com/in/paudelsharmaashok/" target="_blank" rel="noopener">Connect on LinkedIn ↗</a>
+          </div>
+        </div>
+        <div class="portrait-wrap">
+          <img class="portrait" src="image.jpg" alt="Portrait of Ashok Sharma">
+          <div class="portrait-note">Curiosity first. Build with purpose.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <div class="section-heading"><div class="eyebrow">A little about me</div><h2>Curious by nature. Collaborative by choice.</h2>
+          <p>A multidisciplinary engineer with a foundation in computer engineering, hands-on experience in machine learning, and a lasting interest in teaching and research.</p></div>
+        <div class="about-grid">
+          <div class="panel">
+            <p>My work has taken me through natural language processing, machine learning pipelines, recommendation systems, chatbot development, and full-stack application development. At Fusemachines, I contributed to NLP-powered job matching and CV-scoring workflows, explored research-led alternatives, and proposed a word-embedding-based pattern-matching approach that improved model accuracy by 20%.</p>
+            <p>I also value the human side of engineering: mentoring junior engineers, creating learning material, documenting processes, and helping teams work more effectively. Before moving deeper into industry, I taught engineering subjects and supervised student projects across software, electronics, AI, and databases.</p>
+            <p>I am motivated by meaningful problems, thoughtful experimentation, and the opportunity to keep learning while helping others grow.</p>
+            <div class="stats">
+              <div class="stat"><b>3.9</b><small>Master's CGPA</small></div>
+              <div class="stat"><b>15+</b><small>ML trainees mentored</small></div>
+              <div class="stat"><b>20%</b><small>Model accuracy improvement in POC</small></div>
+            </div>
+          </div>
+          <div class="values">
+            <div class="value"><strong>Learn and grow</strong><span>Eager to explore new ideas, deepen my skills, and turn learning into practice.</span></div>
+            <div class="value"><strong>Grow as a team</strong><span>Motivated by collaboration, knowledge sharing, and collective progress.</span></div>
+            <div class="value"><strong>Take initiative</strong><span>Comfortable proposing ideas, thinking beyond convention, and pursuing better solutions.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience">
+      <div class="container">
+        <div class="section-heading"><div class="eyebrow">Professional journey</div><h2>Experience</h2><p>A mix of applied machine learning, software development, research, mentoring, and engineering education.</p></div>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div><div class="date">May 2022 – May 2024</div><div class="place">Kathmandu, Nepal</div></div>
+            <div class="entry"><h3>Fusemachines Nepal</h3><div class="sub">Associate Machine Learning Engineer · Full-time</div>
+              <ul>
+                <li>Built and supported NLP models for customer-facing products, including job-matching solutions connecting technology talent with relevant opportunities.</li>
+                <li>Contributed to Squadery, a CV-scoring product and large NLP-based pipeline, coordinating technical priorities with the wider team.</li>
+                <li>Proposed and presented a word-embedding-based pattern-matching proof of concept that resulted in 20% more accurate models.</li>
+                <li>Mentored 15+ junior machine-learning trainees and led training and documentation practices for the UBIAI annotation tool; received multiple commendations from senior leadership.</li>
+                <li>Led an automation initiative to identify opportunities to reduce repetitive data annotation and preparation work.</li>
+                <li>Reviewed and presented three research papers on CV scoring, exploring alternative approaches for Squadery.</li>
+                <li>Developed course content on machine learning, deep learning, data analytics, and ML production, including examples, quizzes, and assignments.</li>
+              </ul>
+              <p><strong>Tools:</strong> Python, NLTK, spaCy, NER, UBIAI, Matplotlib, Plotly, Plotnine, Seaborn.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div><div class="date">Apr 2022 – May 2022</div><div class="place">Kathmandu, Nepal</div></div>
+            <div class="entry"><h3>XmartPoint Technologies</h3><div class="sub">ASP.NET Developer Intern · Full-time</div>
+              <ul><li>Developed, tested, and maintained internal web applications using C#, ASP.NET, and the ASP.NET MVC framework.</li><li>Delivered documented, maintainable front-end and back-end code for a bank-loan automation project and participated in daily Scrum meetings.</li></ul>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div><div class="date">Jul 2021 – Nov 2021</div><div class="place">Kathmandu, Nepal</div></div>
+            <div class="entry"><h3>Deep Mind Creations Pvt. Ltd.</h3><div class="sub">Machine Learning Intern · Full-time</div>
+              <ul><li>Built an NLP-based chatbot system.</li><li>Developed tour-package recommendation systems using content-based and collaborative-filtering techniques.</li><li>Worked with web-scraping tools including Beautiful Soup, Scrapy, and AutoScraper.</li></ul>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div><div class="date">Feb 2017 – Sep 2019</div><div class="place">Kathmandu, Nepal</div></div>
+            <div class="entry"><h3>Nepal College of Information Technology</h3><div class="sub">Lecturer · Full-time</div>
+              <ul><li>Taught Logic Circuits in theory and laboratory classes for Electronics, Software, and Computer Engineering; taught Software Engineering Fundamentals and Electronic Devices laboratory.</li><li>Supervised major and minor student projects in electronics, software engineering, AI, and database systems.</li><li>Completed a four-day pedagogy training programme focused on effective teaching and classroom leadership.</li></ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="education">
+      <div class="container">
+        <div class="section-heading"><div class="eyebrow">Academic foundation</div><h2>Education</h2><p>Strong foundations in computer engineering, electronics, software, and intelligent systems.</p></div>
+        <div class="timeline">
+          <article class="timeline-item">
+            <div><div class="date">2016 – 2020</div><div class="place">Kathmandu, Nepal</div></div>
+            <div class="entry"><h3>Nepal College of Information Technology</h3><div class="sub">Master of Computer Engineering · Pokhara University</div>
+              <p><strong>CGPA: 3.9 · Ranked first in the cohort</strong></p>
+              <p>Graduate coursework: Artificial Intelligence, Object-Oriented Software Engineering, Distributed Systems, Distributed DBMS, Cloud Computing, and Network Security.</p>
+            </div>
+          </article>
+          <article class="timeline-item">
+            <div><div class="date">2011 – 2015</div><div class="place">Kathmandu, Nepal</div></div>
+            <div class="entry"><h3>Kathmandu Engineering College</h3><div class="sub">Bachelor of Electronics and Communication Engineering · Tribhuvan University</div>
+              <p>Undergraduate coursework: C and C++ Programming, Basic and Advanced Electronics Engineering, Basic Electrical Engineering, Computer Graphics, Discrete Structures, and Numerical Methods.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills">
+      <div class="container">
+        <div class="section-heading"><div class="eyebrow">Technical toolkit</div><h2>Skills & technologies</h2><p>Tools and technologies I have used across machine learning, data science, application development, and engineering workflows.</p></div>
+        <div class="skill-groups">
+          <div class="card skill-group"><h3>Programming & Web</h3><div class="tag-list"><span class="tag">Python</span><span class="tag">Java</span><span class="tag">C</span><span class="tag">C++</span><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">PHP</span><span class="tag">C# / ASP.NET</span></div></div>
+          <div class="card skill-group"><h3>Machine Learning & Data Science</h3><div class="tag-list"><span class="tag">Scikit-learn</span><span class="tag">TensorFlow</span><span class="tag">Keras</span><span class="tag">NLTK</span><span class="tag">spaCy</span><span class="tag">Pandas</span><span class="tag">NumPy</span><span class="tag">Flask</span><span class="tag">UBIAI</span><span class="tag">Google Colab</span></div></div>
+          <div class="card skill-group"><h3>Databases & Platforms</h3><div class="tag-list"><span class="tag">MySQL</span><span class="tag">SQL</span><span class="tag">SQLAlchemy</span><span class="tag">Linux</span><span class="tag">Windows</span><span class="tag">AWS</span><span class="tag">Arduino</span><span class="tag">Raspberry Pi</span></div></div>
+          <div class="card skill-group"><h3>Tools & Professional Skills</h3><div class="tag-list"><span class="tag">Git</span><span class="tag">LaTeX</span><span class="tag">Matplotlib</span><span class="tag">Plotly</span><span class="tag">Seaborn</span><span class="tag">Leadership</span><span class="tag">Content Writing</span><span class="tag">Public Speaking</span><span class="tag">Mentoring</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="projects">
+      <div class="container">
+        <div class="section-heading"><div class="eyebrow">Selected work</div><h2>Projects</h2><p>Projects that reflect my interests in language, intelligent systems, and engineering solutions with real-world utility.</p></div>
+        <div class="project-grid">
+          <article class="card project-card"><div class="project-meta">Graduate thesis · Jan 2020 – Jan 2021</div><h3>Fake News Detection</h3><p><em>A Multi-class Text Classification Approach</em></p><p>Implemented and comparatively evaluated machine-learning, artificial neural network, and anomaly-detection approaches for multi-class text classification. Explored anomaly detection as a less-studied approach and a distinctive contribution to the project.</p></article>
+          <article class="card project-card"><div class="project-meta">Undergraduate major project · 2014</div><h3>Electronic Aid for Visually Impaired People</h3><p>Designed an assistive electronic belt using an Arduino Uno and ultrasonic sensors for obstacle detection, with GPS and GSM modules to support navigation.</p></article>
+          <article class="card project-card"><div class="project-meta">Undergraduate minor project · 2013</div><h3>Home Automation & Surveillance System</h3><p>Built an Arduino-based monitoring system integrating an Android application with home appliances, an IP camera for recording, and video streaming to a mobile device.</p></article>
+          <article class="card project-card"><div class="project-meta">Industry · Fusemachines</div><h3>CV Scoring & NLP Pipeline</h3><p>Contributed to Squadery's CV-scoring workflow and explored research-informed alternatives, including a word-embedding pattern-matching proof of concept that improved model accuracy by 20%.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="courses">
+      <div class="container">
+        <div class="section-heading"><div class="eyebrow">Continuous learning</div><h2>Courses & professional development</h2></div>
+        <div class="course-grid">
+          <article class="card course-card"><div class="project-meta">Udacity · Jul 2021 – Nov 2021</div><h3>Full-Stack Software Development</h3><p>Studied the end-to-end software development pipeline, clean and modular coding, testing, logging, distributed version control, and practical project development.</p></article>
+          <article class="card course-card"><div class="project-meta">Udacity · Feb 2021 – Jun 2021</div><h3>AWS Machine Learning</h3><p>Explored the integration of cloud and machine-learning technologies, including DeepLens for computer vision, DeepRacer for reinforcement learning, and DeepComposer for generative adversarial networks.</p></article>
+          <article class="card course-card"><div class="project-meta">MPercept Technology · Sep 2019 – Jan 2020</div><h3>Advanced Python Programming</h3><p>Advanced data structures, conditional operations, modules, object-oriented programming, inheritance, polymorphism, and individual and group projects.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="honors">
+      <div class="container">
+        <div class="section-heading"><div class="eyebrow">Recognition</div><h2>Honors & awards</h2></div>
+        <div class="awards">
+          <div class="award"><div class="year">2021</div><p>Certificate of Excellence for overall performance at Master's level (MECE).</p></div>
+          <div class="award"><div class="year">2018 / 2019</div><p>Topper of Pokhara University in Master's level (MECE), second and third semesters.</p></div>
+          <div class="award"><div class="year">Master's first semester</div><p>Second topper of Pokhara University in Master's level (MECE).</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="contact-panel">
+          <div><div class="eyebrow">Let's connect</div><h2>Have an idea worth building?</h2><p>I'm always glad to connect with people working on meaningful technology, research, and learning.</p>
+            <div class="contact-links">
+              <a class="button primary" href="mailto:ashok.sharma@fusemachines.com">Email me</a>
+              <a class="button secondary" href="tel:+9779861001617">Call: +977 9861001617</a>
+            </div>
+          </div>
+          <div class="social-links">
+            <a href="https://www.linkedin.com/in/paudelsharmaashok/" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a href="https://github.com/ashoksharma92" target="_blank" rel="noopener">GitHub ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="container footer-inner"><span>© <span id="year"></span> Ashok Sharma. Built with curiosity.</span><a href="#home">Back to top ↑</a></div></footer>
+  <script>
+    const menuToggle = document.getElementById('menuToggle');
+    const navLinks = document.getElementById('navLinks');
+    menuToggle.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuToggle.setAttribute('aria-expanded', String(isOpen));
+    });
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
